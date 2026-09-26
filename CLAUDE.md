@@ -55,11 +55,13 @@ The Clone lives in this repository (`~/soron-clone`), not in any Claude account.
 - Episodes are append-only, in the short format defined in `memory/SCHEMA.md`.
 - **Never** store credentials, API keys, tokens, passwords or private secrets anywhere in this repository. Record only *where* a secret is kept (e.g. "in the project's `.env.local`").
 
-## Git safety
+## Git safety and backup
 
-- The repository is currently **local-only** (no commits, no remote).
-- Do **not** create a GitHub repository, add a remote, commit, or push without asking Soron first. Each is a separate approval. The same git rules apply to every repository (see "Approval model", rule 2).
-- A private remote backup is planned, as its own approved step later.
+- `~/soron-clone` has a **private GitHub remote**: `origin` = `https://github.com/shourovsoron/soron-clone.git` (Soron's own account). First pushed 2026-09-26 (`23eb9fa`). Decision: [[2026-09-26-clone-architecture-github-backup]].
+- **GitHub holds only what has been committed and pushed.** Uncommitted or unpushed changes exist only on this Mac.
+- Commits use the **repo-local** identity (Shourov Hossain Soron with the GitHub noreply address). Never change the global git config.
+- A local pre-commit secret scan (`.git/hooks/pre-commit`) runs on every commit. Never bypass it with `--no-verify` without Soron's approval. It isn't version-controlled, so re-create it after a fresh clone.
+- **Every commit needs Soron's approval; every push is DESTRUCTIVE**, approved immediately before. No force-push or history rewrite. Changing the remote, repository visibility or GitHub settings needs approval. The same git rules apply to every repository (see "Approval model", rule 2).
 
 ## Global configuration and connectors
 

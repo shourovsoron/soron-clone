@@ -5,9 +5,9 @@ description: Digital Clone memory lives in a local repo at ~/soron-clone, is aut
 updated: 2026-09-26
 confirmed: soron
 sources: [Soron's approvals, 2026-09-26]
-status: active
+status: superseded
 supersedes: null
-superseded_by: null
+superseded_by: 2026-09-26-clone-architecture-github-backup
 decided_by: Soron
 ---
 

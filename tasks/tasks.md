@@ -6,8 +6,8 @@ States: NEW · PLANNING · IN_PROGRESS · WAITING_FOR_SORON · BLOCKED · VERIFY
 `ID | STATE | project | title | next step | updated`
 
 ## Open
+- T-0009 | WAITING_FOR_SORON | clone | Record the GitHub backup in Clone docs (CLAUDE.md, superseding decision, index) | docs updated, uncommitted; next: second commit + push, each on separate approval | 2026-09-26
 - T-0003 | WAITING_FOR_SORON | clone | Clean up original built-in memory files (`~/.claude/projects/-Users-soron-Desktop-claude-project/memory/`) | keep until Soron approves | 2026-09-26
-- T-0004 | IN_PROGRESS | clone | Phase 3C: private GitHub backup of `~/soron-clone` | steps 1–3 done (safety check; .gitignore + secret-scan hook; repo-local commit identity); next: step 4 first commit, waits for Soron | 2026-09-26
 - T-0005 | IN_PROGRESS | clone | Phase 3 (tool layer) | only the tool-inventory step is approved; next item needs Soron's go-ahead | 2026-09-26
 
 ## Standing constraints (from Soron)
@@ -18,6 +18,7 @@ States: NEW · PLANNING · IN_PROGRESS · WAITING_FOR_SORON · BLOCKED · VERIFY
 - No transcript scanning; no `photos-audit` seeding; no WordPress contact without separate approval.
 
 ## Completed
+- T-0004 | COMPLETED | clone | Phase 3C: private GitHub backup of `~/soron-clone` | evidence: `git push origin main` succeeded (new branch, no force); `git ls-remote origin` shows refs/heads/main = 23eb9fa40955044c412ff182ace6914dc583280f; origin = https://github.com/shourovsoron/soron-clone.git (private repo created by Soron); global config unchanged | 2026-09-26
 - T-0008 | COMPLETED | clone | Phase 3B Master Prompt approval-model consistency update | evidence: CLAUDE.md "Approval model" section plus tightened §2/§3/§9/§10/§11/§13/§17/§20, tools.md §7 corrected, decision 2026-09-26-approval-model active; contradiction search clean; approved by Soron 2026-09-26 including all three judgment calls | 2026-09-26
 - T-0006 | COMPLETED | clone | Phase 3.1 tool inventory | evidence: `memory/knowledge/tools.md` written; approved by Soron as documentation 2026-09-26 | 2026-09-26
 - T-0007 | COMPLETED | clone | Permission allowlist cleanup | evidence: active `settings.local.json` is valid JSON and exactly matches the reviewed 12 allow + 9 ask lists (checked with jq, SHA-256 prefix 3223bc97498754d7); all 38 original rules accounted for; backup `.bak-2026-09-26` deleted on Soron's instruction; final state reviewed and approved by Soron. Minor process violation: a stray `python3 -V` ran during record-keeping (no effect; acknowledged by Soron, not a security incident) | 2026-09-26
