@@ -6,7 +6,7 @@ States: NEW · PLANNING · IN_PROGRESS · WAITING_FOR_SORON · BLOCKED · VERIFY
 `ID | STATE | project | title | next step | updated`
 
 ## Open
-- T-0009 | WAITING_FOR_SORON | clone | Record the GitHub backup in Clone docs (CLAUDE.md, superseding decision, index) | docs updated, uncommitted; next: second commit + push, each on separate approval | 2026-09-26
+- T-0010 | IN_PROGRESS | clone | Phase 4: Clone runtime | done: architecture approved, docs research, global `Bash(git push *)` ask rule, 4.2 guard + 70 offline tests, 4.3 registration + live verification (deny blocked; ask prompted and Soron approved). Not done: 4.1 PROTOCOL.md, 4.4 approvals log + blocked fields, 4.5–4.6 SessionStart context hook, 4.7 SETUP.md + versioned pre-commit hook, committing `runtime/`. Next: waits for Soron | 2026-09-26
 - T-0003 | WAITING_FOR_SORON | clone | Clean up original built-in memory files (`~/.claude/projects/-Users-soron-Desktop-claude-project/memory/`) | keep until Soron approves | 2026-09-26
 - T-0005 | IN_PROGRESS | clone | Phase 3 (tool layer) | only the tool-inventory step is approved; next item needs Soron's go-ahead | 2026-09-26
 
@@ -18,6 +18,7 @@ States: NEW · PLANNING · IN_PROGRESS · WAITING_FOR_SORON · BLOCKED · VERIFY
 - No transcript scanning; no `photos-audit` seeding; no WordPress contact without separate approval.
 
 ## Completed
+- T-0009 | COMPLETED | clone | Record the GitHub backup in Clone docs | evidence: commit c56eba9 (7 files) pushed as a fast-forward; `git ls-remote` showed GitHub main = c56eba950791349530289b7884b94d8f49397c23; approved by Soron 2026-09-26 | 2026-09-26
 - T-0004 | COMPLETED | clone | Phase 3C: private GitHub backup of `~/soron-clone` | evidence: `git push origin main` succeeded (new branch, no force); `git ls-remote origin` shows refs/heads/main = 23eb9fa40955044c412ff182ace6914dc583280f; origin = https://github.com/shourovsoron/soron-clone.git (private repo created by Soron); global config unchanged | 2026-09-26
 - T-0008 | COMPLETED | clone | Phase 3B Master Prompt approval-model consistency update | evidence: CLAUDE.md "Approval model" section plus tightened §2/§3/§9/§10/§11/§13/§17/§20, tools.md §7 corrected, decision 2026-09-26-approval-model active; contradiction search clean; approved by Soron 2026-09-26 including all three judgment calls | 2026-09-26
 - T-0006 | COMPLETED | clone | Phase 3.1 tool inventory | evidence: `memory/knowledge/tools.md` written; approved by Soron as documentation 2026-09-26 | 2026-09-26

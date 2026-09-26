@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "description": "Enforcement subset of the Clone approval model, used by runtime/hooks/guard.sh. The authoritative human-readable classifications are memory/knowledge/tools.md and the 'Approval model' section of CLAUDE.md. The guard never returns 'allow'.",
+  "decisions": {
+    "none": "no output, exit 0: the normal Claude Code permission flow decides",
+    "ask": "JSON permissionDecision 'ask', exit 0: forces a permission prompt",
+    "deny": "stderr reason, exit 2: blocks the call in every permission mode",
+    "fail_closed": "stderr reason, exit 2: bad input, missing fields or internal error"
+  },
+
+  "paths": {
+    "scratch_prefixes": ["/private/tmp/claude-501/"],
+    "clone_record_dirs": ["memory/", "tasks/", "workflows/"],
+    "clone_config_files": ["memory/SCHEMA.md"],
+    "secret_basename_regex": "^(\\.env(\\..+)?|.*\\.(pem|key|p12|pfx)|id_(rsa|ed25519|ecdsa|dsa)|credentials\\.json|\\.netrc|\\.git-credentials|\\.npmrc|.*\\.keychain(-db)?)$",
+    "secret_exempt_basename_regex": "^\\.env\\.(example|sample|template|dist)$",
+    "secret_path_regex": "/\\.ssh/",
+    "claude_config_regex": "^{HOME}/\\.claude/(settings[^/]*\\.json|CLAUDE\\.md|hooks/.*)$|/\\.claude/settings[^/]*\\.json$|^{HOME}/\\.claude\\.json$|^{HOME}/\\.gitconfig$|^{HOME}/\\.config/git/",
+    "transcript_regex": "^{HOME}/\\.claude/projects/.*\\.jsonl$",
+    "offlimits_regex": "/photos-audit(/|$)"
+  },
+
+  "tools": {
+    "none": ["Glob", "LS", "WebFetch", "WebSearch", "ToolSearch", "Skill", "AskUserQuestion", "TodoWrite", "TaskCreate", "TaskGet", "TaskList", "TaskUpdate", "TaskOutput", "TaskStop", "KillShell", "BashOutput", "Monitor", "PushNotification", "SendUserFile", "ListAgents", "Agent", "SendMessage", "ReportFindings", "SuggestSkills", "ListSkills", "SearchSkills", "ListPlugins", "SearchPlugins", "SuggestPluginInstall", "EnterPlanMode", "ExitPlanMode"],
+    "ask": ["CronCreate", "CronDelete", "CronList", "RemoteTrigger", "ScheduleWakeup", "EnterWorktree", "ExitWorktree", "ArtifactComments", "DesignSync"],
+    "path_read": ["Read"],
+    "path_write": ["Write", "Edit", "MultiEdit", "NotebookEdit"],
+    "grep": ["Grep"],
+    "action": {
+      "Artifact": {"field": "action", "default": "publish", "none": ["read", "list", "quickstart", "open"]},
+      "ArtifactData": {"field": "action", "none": ["get", "list", "query"]},
+      "mcp__Claude_Browser__computer": {"field": "action", "none": ["screenshot", "zoom", "scroll", "scroll_to", "hover", "wait"]},
+      "mcp__Claude_Code_iOS_Simulator__control": {"field": "action", "none": ["screenshot"]}
+    }
+  },
+
+  "mcp_read_only_regex": [
+    "^mcp__1a59c906-04da-521d-bda7-7f71b9f9e01c__(guide|read|query)$",
+    "^mcp__(visualize|6f616b42-0ed8-571e-823f-ee4aca6b7ce9)__(read_me|show_widget)$",
+    "^mcp__Claude_Browser__(navigate|find|get_page_text|read_page|read_console_messages|read_network_requests|tabs_context|tabs_create|tabs_select|tabs_close|resize_window|preview_list|preview_logs)$",
+    "^mcp__scheduled-tasks__list_(scheduled_tasks|task_runs)$",
+    "^mcp__ccd_connectors__session_connectors_status$",
+    "^mcp__ccd_session_mgmt__(list_sessions|get_session|get_usage|list_events)$",
+    "^mcp__ccd_session__(mark_chapter|read_widget_context|spawn_task|dismiss_task)$",
+    "^mcp__ccd_view__get_layout$",
+    "^mcp__ccd_window__get_window_layout$",
+    "^mcp__ccd_sidebar__list_groups$",
+    "^mcp__ccd_pr__get_status$",
+    "^mcp__terminal__(read_terminal|list_terminal_tabs)$",
+    "^mcp__mcp-registry__(list_connectors|search_mcp_registry|suggest_connectors)$"
+  ],
+
+  "bash": {
+    "deny_cmds": ["sudo", "su", "doas", "security"],
+    "interpreters": ["sh", "bash", "zsh", "dash", "ksh", "fish", "csh", "tcsh", "python", "python2", "python3", "node", "deno", "bun", "perl", "ruby", "php", "lua", "osascript", "Rscript", "eval", "source", ".", "exec"],
+    "interpreter_safe_args": ["--version", "-V", "--help"],
+    "wrappers": ["nohup", "time", "command", "builtin", "nice", "env", "caffeinate", "stdbuf", "timeout", "xargs"],
+    "ask_cmds": ["kill", "pkill", "killall", "launchctl", "defaults", "open", "crontab", "shutdown", "reboot", "diskutil", "networksetup", "scutil", "systemsetup", "pmset", "csrutil", "spctl", "ssh", "scp", "sftp", "nc", "ncat", "telnet", "ftp", "wget", "claude", "gh", "jupyter"],
+    "file_modifiers": ["rm", "rmdir", "mv", "cp", "mkdir", "touch", "chmod", "chown", "chgrp", "ln", "tee", "truncate", "dd", "install", "rsync", "unzip", "tar", "ditto", "patch", "zip", "gzip", "gunzip", "xz", "bzip2", "split", "srm", "trash"],
+    "git": {
+      "read": ["status", "log", "diff", "show", "rev-parse", "ls-files", "ls-tree", "ls-remote", "blame", "describe", "shortlog", "show-ref", "for-each-ref", "merge-base", "cat-file", "check-ignore", "count-objects", "rev-list", "grep", "version", "help", "cherry", "whatchanged", "var", "name-rev", "verify-commit", "check-attr", "show-branch"],
+      "deny_subcommands": ["filter-branch", "filter-repo", "rebase", "replace"],
+      "branch_read_flags": ["-a", "--all", "-r", "--remotes", "-l", "--list", "-v", "-vv", "--verbose", "--show-current", "--no-color", "--color"],
+      "branch_read_prefixes": ["--format=", "--sort=", "--contains", "--no-contains", "--merged", "--no-merged", "--points-at", "--color="]
+    },
+    "pkg": {
+      "npm": ["view", "info", "show", "v", "ls", "list", "la", "ll", "outdated", "search", "help", "root", "prefix", "explain", "why", "audit"],
+      "pnpm": ["list", "ls", "why", "outdated", "info", "view"],
+      "yarn": ["list", "why", "info", "outdated"],
+      "pip": ["list", "show", "freeze", "check"],
+      "pip3": ["list", "show", "freeze", "check"],
+      "brew": ["list", "ls", "info", "search", "deps", "config", "outdated", "leaves", "desc", "uses"],
+      "docker": ["ps", "images", "info", "version", "inspect", "logs"],
+      "podman": ["ps", "images", "info", "version", "inspect", "logs"],
+      "gem": ["list"],
+      "cargo": ["tree"],
+      "go": ["version", "env", "list"],
+      "kubectl": ["version", "get", "describe"],
+      "terraform": ["version", "show", "validate"],
+      "composer": ["show", "outdated"],
+      "npx": []
+    },
+    "npx_safe_regex": "^--no-install tsc --noEmit( -p [^ ]+)?$"
+  }
+}

@@ -4,7 +4,7 @@ type: knowledge
 description: Tool layer inventory — every tool/connector visible to the Clone, what it can read/write, its approval level, safety rules, and connection state.
 updated: 2026-09-26
 last_verified: 2026-09-26
-confirmed: inferred   # approval levels defined by Soron 2026-09-26; per-tool classification proposed by Claude, pending Soron's review
+confirmed: soron   # approval levels defined by Soron; per-tool classification approved as documentation by Soron (2026-09-26)
 sources:
   - Claude Code session tool list and connector status (2026-09-26)
   - ~/Desktop/claude-project/.claude/settings.local.json (permission allowlist, read-only)
@@ -154,13 +154,17 @@ These live inside the **current Claude account**. Anything created there does **
   - `brew list *`, `docker info *`
   - `echo "EXIT:$?"`, `sw_vers -productVersion`, `disown`
 - **`ask` (9, Claude Code always prompts):** `npm install *`, `python3 -c ' *`, `npx next *`, `docker rm *`, `docker run *`, `brew tap *`, `brew install *`, `brew untap *`, `npm run *`.
-- **Global `~/.claude/settings.json`:** no permission rules.
+- **Global `~/.claude/settings.json`** (applies to every session on this Mac):
+  - `permissions.ask`: `Bash(git push *)`. Added 2026-09-26 because auto mode otherwise pushes to the current repo without a prompt. Per the docs it prompts in every mode, including auto.
+  - `hooks.PreToolUse`: matcher `"*"`, command `/Users/soron/soron-clone/runtime/hooks/guard.sh`, timeout 10. This is the Clone guard ([[2026-09-26-clone-guard-hook]]); policy in `runtime/policy.json`. It returns only nothing, **ask** or **deny**, never allow. **Verified live on 2026-09-26:** deny blocked a Read and a Bash `.env`-pattern call; ask showed a prompt (approved by Soron) for `bash -c 'true'`; real Write, Edit and MCP inputs were parsed.
 - **History:** 38 allow rules before the cleanup. [[permission-allowlist-review]] has the rule-by-rule review and cleanup result.
 
 **Rules (Approval model 3 and 4):**
 - `allow` is **not** Soron's approval. Follow this file's levels even when no prompt appears.
 - `ask` is an extra safety layer. When the Clone's rules need approval, ask Soron in the conversation first; the Claude Code prompt comes on top of that.
-- Changing these permissions is a config change that needs Soron's approval.
+- **The guard hook is a backstop, not the approval.** A guard "ask" prompt is not Soron's approval under the Approval model. The guard doesn't replace asking in the conversation.
+- Changing these permissions or the hook is a config change that needs Soron's approval. The guard itself asks before edits to `~/.claude/settings*.json` and the Clone's `runtime/`.
+- **Rollback:** remove the `hooks` entry from `~/.claude/settings.json`, or set `"disableAllHooks": true`.
 
 ## 8. Secrets: known names and locations only (no values)
 

@@ -26,12 +26,13 @@ _(none: every client relationship is unconfirmed)_
 ## Decisions
 - [2026-09-26-clone-architecture-github-backup](decisions/2026-09-26-clone-architecture-github-backup.md) — **active**. Git repo `~/soron-clone`, authoritative memory, schema; private GitHub backup (`shourovsoron/soron-clone`), commit and push only with approval.
 - [2026-09-26-clone-memory-architecture](decisions/2026-09-26-clone-memory-architecture.md) — **superseded** by the above (was: local-only git).
+- [2026-09-26-clone-guard-hook](decisions/2026-09-26-clone-guard-hook.md) — **active**. Global PreToolUse guard (`runtime/hooks/guard.sh`; none, ask or deny, never allow) plus global `Bash(git push *)` ask rule; verified live.
 - [2026-09-26-approval-model](decisions/2026-09-26-approval-model.md): **active**. Four levels; project changes, every git write and external writes need approval; Claude Code allow/ask is never Soron's approval.
 - [2026-09-26-tie-elementor-constraints](decisions/2026-09-26-tie-elementor-constraints.md) — **active, TIE only**. No Pro widgets, no HTML widgets, Containers over Inner Sections.
 
 ## Knowledge
 - [permission-allowlist-review](knowledge/permission-allowlist-review.md) *(inferred)*: 38 pre-approved Claude Code rules reviewed; cleanup applied and approved 2026-09-26: 12 allow + 9 ask; 18 removed; backup deleted.
-- [tools](knowledge/tools.md) *(levels from Soron; per-tool classification pending review)*: tool inventory, approval levels, WordPress/git/browser rules, pre-approved-command warning, secret names only.
+- [tools](knowledge/tools.md) — **confirmed**: tool inventory, approval levels, WordPress/git/browser rules, pre-approved-command warning, secret names only.
 - [wordpress-novamira-elementor](knowledge/wordpress-novamira-elementor.md) *(inferred)* — Novamira upload/lint flow, sandbox safe-mode risk, Elementor Free gotchas.
 - [figma-mcp-view-seat-workaround](knowledge/figma-mcp-view-seat-workaround.md) *(inferred)* — inspect a public Figma file in the browser when the MCP is rate-limited.
 
