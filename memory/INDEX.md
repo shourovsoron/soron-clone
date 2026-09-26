@@ -1,0 +1,45 @@
+# Memory index
+
+One line per note. Rules: [SCHEMA.md](SCHEMA.md). Notes marked *(inferred)* are not yet confirmed by Soron. Read the note before relying on it.
+
+## Owner
+- [owner](owner.md) — Soron; minimal by design.
+
+## Preferences
+- [figma-is-design-only](preferences/figma-is-design-only.md) — **confirmed**. Figma is primarily a visual reference; don't blindly copy numbers, dimensions or spacing; use judgment and project constraints (project rules win).
+
+## Projects
+- [visionic-agency](projects/visionic-agency.md) *(inferred)* — Next.js 16 plus planned headless WordPress; home sections in progress; **baseline 5 modified + 46 untracked (confirmed): don't touch**; WordPress not connected; deployment unknown.
+- [smarthire50-site](projects/smarthire50-site.md) *(inferred)* — WorkScout job board; 200 LinkedIn jobs imported 2026-09-22; ownership unknown.
+- [tie-aox-roi-calculator](projects/tie-aox-roi-calculator.md) *(inferred)* — ROI calculator; logic only in `lib/roi.ts`, deliberate guards, SVG donut, iframe-embeddable.
+- [tie-eventmark-wordpress](projects/tie-eventmark-wordpress.md) *(inferred)* — claude.eventmark.design; Elementor Free pages built via PHP; environment unknown.
+- [spin-and-win-campaign](projects/spin-and-win-campaign.md) *(inferred)* — Next.js plus MongoDB prize wheel, 800-prize transactional engine; its export feeds prize-spinner.
+- [prize-spinner](projects/prize-spinner.md) *(inferred)* — client-only CSV raffle draw, localStorage state.
+
+## Small experiments (no note: nothing reusable found)
+- `~/Desktop/claude-project/portfolio-showcase` — "Portfolio Showcase — Motion Prototype" (static HTML plus a tiny Node server, 2026-09-10).
+- `~/Desktop/claude-project/diverging-slider` — "Diverging Gallery Slider — GSAP" (static HTML, 2026-09-10).
+
+## Clients
+_(none: every client relationship is unconfirmed)_
+
+## Decisions
+- [2026-09-26-clone-memory-architecture](decisions/2026-09-26-clone-memory-architecture.md) — **active**. Local repo, authoritative memory, schema, local-only git.
+- [2026-09-26-approval-model](decisions/2026-09-26-approval-model.md): **active**. Four levels; project changes, every git write and external writes need approval; Claude Code allow/ask is never Soron's approval.
+- [2026-09-26-tie-elementor-constraints](decisions/2026-09-26-tie-elementor-constraints.md) — **active, TIE only**. No Pro widgets, no HTML widgets, Containers over Inner Sections.
+
+## Knowledge
+- [permission-allowlist-review](knowledge/permission-allowlist-review.md) *(inferred)*: 38 pre-approved Claude Code rules reviewed; cleanup applied and approved 2026-09-26: 12 allow + 9 ask; 18 removed; backup deleted.
+- [tools](knowledge/tools.md) *(levels from Soron; per-tool classification pending review)*: tool inventory, approval levels, WordPress/git/browser rules, pre-approved-command warning, secret names only.
+- [wordpress-novamira-elementor](knowledge/wordpress-novamira-elementor.md) *(inferred)* — Novamira upload/lint flow, sandbox safe-mode risk, Elementor Free gotchas.
+- [figma-mcp-view-seat-workaround](knowledge/figma-mcp-view-seat-workaround.md) *(inferred)* — inspect a public Figma file in the browser when the MCP is rate-limited.
+
+## Workflows
+_(none yet. Candidate: the SmartHire50 LinkedIn job import, if it will repeat)_
+
+## Excluded by decision
+- `photos-audit`: not seeded (personal data; needs separate approval).
+- Session transcripts: not scanned (needs separate approval; never stored raw).
+
+## Episodes
+- [2026-09](episodes/2026-09.md) — Clone first run, Phase 1, Phase 2 seeding.

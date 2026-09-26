@@ -1,0 +1,27 @@
+# Secrets must never enter the Clone
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials.json
+secrets.*
+*.keychain*
+
+# OS / editor noise
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Local scratch
+tmp/
+*.log
+*.bak*
+*.new
+
+# Local Claude Code settings (machine-specific permissions)
+.claude/settings.local.json
