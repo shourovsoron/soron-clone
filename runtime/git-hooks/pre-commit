@@ -1,0 +1,39 @@
+#!/bin/sh
+# Soron Digital Clone: pre-commit secret scan.
+# Blocks a commit when staged files are secret-bearing by name, or when added
+# lines contain secret-shaped values. Version-controlled at
+# runtime/git-hooks/pre-commit; .git/hooks/pre-commit is a symlink to it
+# (re-create the link after a fresh clone, see runtime/SETUP.md).
+# Uses only /bin/sh, git and /usr/bin/grep; nothing to install.
+# Bypassing it (git commit --no-verify) requires Soron's explicit approval.
+
+GREP=/usr/bin/grep
+fail=0
+
+# 1. Secret-bearing file names among staged (added/copied/modified/renamed) files.
+NAME_RE='(^|/)(\.env(\..*)?|.*\.pem|.*\.key|.*\.p12|.*\.pfx|id_rsa.*|id_ed25519.*|credentials\.json|secrets\..*|.*\.keychain.*|settings\.local\.json)$'
+names=$(git diff --cached --name-only --diff-filter=ACMR | $GREP -E "$NAME_RE")
+if [ -n "$names" ]; then
+  echo "pre-commit: BLOCKED - secret-bearing file name(s) staged:" >&2
+  echo "$names" | sed 's/^/  /' >&2
+  fail=1
+fi
+
+# 2. Secret-shaped values in added lines (values are never printed).
+VALUE_RE='sk-[A-Za-z0-9_-]{16,}|ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|xox[abprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{10,}|mongodb(\+srv)?://[^ /]*:[^ @]*@|[a-z]+://[^/ :@]+:[^/ @]+@|Bearer [A-Za-z0-9._-]{20,}|(api[_-]?key|secret|token|passw(or)?d)["'"'"']?[[:space:]]*[:=][[:space:]]*["'"'"']?[A-Za-z0-9/+_.-]{12,}'
+hits=$(git diff --cached -U0 --diff-filter=ACMR --no-color \
+  | awk '/^\+\+\+ b\//{f=substr($0,7)} /^\+[^+]/{print f}' \
+  | sort -u | while read -r f; do
+      git diff --cached -U0 --no-color -- "$f" | $GREP -E '^\+[^+]' | $GREP -Eiq "$VALUE_RE" && echo "$f"
+    done)
+if [ -n "$hits" ]; then
+  echo "pre-commit: BLOCKED - secret-shaped value(s) in added lines of:" >&2
+  echo "$hits" | sed 's/^/  /' >&2
+  fail=1
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo "pre-commit: remove the secret(s) and re-stage. Do not bypass without Soron's approval." >&2
+  exit 1
+fi
+exit 0

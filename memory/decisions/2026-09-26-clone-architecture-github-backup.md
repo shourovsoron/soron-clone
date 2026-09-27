@@ -5,9 +5,9 @@ description: Clone memory lives in the git repo ~/soron-clone, authoritative ove
 updated: 2026-09-26
 confirmed: soron
 sources: [Soron's approvals 2026-09-26 (Phase 3C steps 1–7 and follow-ups)]
-status: active
+status: superseded
 supersedes: 2026-09-26-clone-memory-architecture
-superseded_by: null
+superseded_by: 2026-09-27-clone-architecture-versioned-precommit
 decided_by: Soron
 ---
 
