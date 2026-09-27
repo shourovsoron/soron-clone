@@ -157,6 +157,7 @@ These live inside the **current Claude account**. Anything created there does **
 - **Global `~/.claude/settings.json`** (applies to every session on this Mac):
   - `permissions.ask`: `Bash(git push *)`. Added 2026-09-26 because auto mode otherwise pushes to the current repo without a prompt. Per the docs it prompts in every mode, including auto.
   - `hooks.PreToolUse`: matcher `"*"`, command `/Users/soron/soron-clone/runtime/hooks/guard.sh`, timeout 10. This is the Clone guard ([[2026-09-26-clone-guard-hook]]); policy in `runtime/policy.json`. It returns only nothing, **ask** or **deny**, never allow. **Verified live on 2026-09-26:** deny blocked a Read and a Bash `.env`-pattern call; ask showed a prompt (approved by Soron) for `bash -c 'true'`; real Write, Edit and MCP inputs were parsed.
+  - `hooks.SessionStart`: matcher `startup|resume|clear|compact`, command `/Users/soron/soron-clone/runtime/hooks/context.sh`, timeout 10 ([[2026-09-27-session-context-hook]]). Read-only state and pointers at session start (at most 25 lines); no network, never reads transcripts, project files or secrets; always exits 0; grants nothing. **Verified 2026-09-27:** context suite 23/23, guard suite 70/70, and a live new-session check by Soron.
 - **History:** 38 allow rules before the cleanup. [[permission-allowlist-review]] has the rule-by-rule review and cleanup result.
 
 **Rules (Approval model 3 and 4):**
@@ -164,7 +165,7 @@ These live inside the **current Claude account**. Anything created there does **
 - `ask` is an extra safety layer. When the Clone's rules need approval, ask Soron in the conversation first; the Claude Code prompt comes on top of that.
 - **The guard hook is a backstop, not the approval.** A guard "ask" prompt is not Soron's approval under the Approval model. The guard doesn't replace asking in the conversation.
 - Changing these permissions or the hook is a config change that needs Soron's approval. The guard itself asks before edits to `~/.claude/settings*.json` and the Clone's `runtime/`.
-- **Rollback:** remove the `hooks` entry from `~/.claude/settings.json`, or set `"disableAllHooks": true`.
+- **Rollback:** remove the `SessionStart` or `PreToolUse` entry from `hooks` in `~/.claude/settings.json`, or set `"disableAllHooks": true` (this disables both). Removing `SessionStart` also means restoring the `@memory/SCHEMA.md` and `@tasks/tasks.md` imports in `CLAUDE.md`.
 
 ## 8. Secrets: known names and locations only (no values)
 

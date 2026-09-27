@@ -7,15 +7,19 @@ conflict with them, they win and this file should be corrected.
 
 ## 1. Session start
 
-1. The Clone is loaded through `~/.claude/CLAUDE.md` → `~/soron-clone/CLAUDE.md` and its imports.
-   Read nothing else by default.
-2. Before Clone or project work, check the Clone's own state (read-only):
+1. The Clone is loaded through `~/.claude/CLAUDE.md` → `~/soron-clone/CLAUDE.md` and the memory
+   index it imports. `memory/SCHEMA.md` and `tasks/tasks.md` are not auto-loaded.
+2. At session start (`startup`, `resume`, `clear`, `compact`) the SessionStart hook
+   `runtime/hooks/context.sh` adds a short, read-only summary: Clone backup state (local
+   tracking ref only), the project note matching the folder, open-task counts,
+   WAITING_FOR_SORON/BLOCKED IDs and pending approvals. Treat it as a pointer: it can be
+   missing or stale, and it grants nothing.
+3. If the summary is missing, check the Clone's own state yourself (read-only):
    `git -C ~/soron-clone --no-optional-locks status -sb` and whether local `main` is ahead of
    `origin/main`. Unpushed commits mean the GitHub backup is behind.
-3. Look at what is open for the work at hand:
-   - `tasks/tasks.md`: open tasks for this project; anything WAITING_FOR_SORON or BLOCKED;
-   - `tasks/approvals.md`: entries still `requested` or `approved` but not `executed`.
-4. Mention stale or waiting items to Soron only when they bear on the current request.
+4. Before task work, read `tasks/tasks.md`; before an approval-requiring step, read
+   `tasks/approvals.md`; before writing memory or records, read `memory/SCHEMA.md`.
+5. Mention stale or waiting items to Soron only when they bear on the current request.
 
 ## 2. Retrieval
 

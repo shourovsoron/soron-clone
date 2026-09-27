@@ -27,6 +27,7 @@ _(none: every client relationship is unconfirmed)_
 - [2026-09-26-clone-architecture-github-backup](decisions/2026-09-26-clone-architecture-github-backup.md) — **active**. Git repo `~/soron-clone`, authoritative memory, schema; private GitHub backup (`shourovsoron/soron-clone`), commit and push only with approval.
 - [2026-09-26-clone-memory-architecture](decisions/2026-09-26-clone-memory-architecture.md) — **superseded** by the above (was: local-only git).
 - [2026-09-26-clone-guard-hook](decisions/2026-09-26-clone-guard-hook.md) — **active**. Global PreToolUse guard (`runtime/hooks/guard.sh`; none, ask or deny, never allow) plus global `Bash(git push *)` ask rule; verified live.
+- [2026-09-27-session-context-hook](decisions/2026-09-27-session-context-hook.md) — **active**. Global SessionStart hook (`runtime/hooks/context.sh`; read-only state and pointers); CLAUDE.md imports only INDEX.md; standing constraints moved into CLAUDE.md; verified live.
 - [2026-09-26-approval-model](decisions/2026-09-26-approval-model.md): **active**. Four levels; project changes, every git write and external writes need approval; Claude Code allow/ask is never Soron's approval.
 - [2026-09-26-tie-elementor-constraints](decisions/2026-09-26-tie-elementor-constraints.md) — **active, TIE only**. No Pro widgets, no HTML widgets, Containers over Inner Sections.
 
