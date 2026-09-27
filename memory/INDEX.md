@@ -46,4 +46,4 @@ _(none yet. Candidate: the SmartHire50 LinkedIn job import, if it will repeat)_
 - Session transcripts: not scanned (needs separate approval; never stored raw).
 
 ## Episodes
-- [2026-09](episodes/2026-09.md) — Clone first run, Phase 1, Phase 2 seeding.
+- [2026-09](episodes/2026-09.md) — Clone first run, Phases 1–4 (Phase 4 completed 2026-09-27).
