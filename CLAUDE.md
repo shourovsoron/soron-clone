@@ -34,10 +34,15 @@ The Clone lives in this repository (`~/soron-clone`), not in any Claude account.
 | Owner | `~/soron-clone/memory/owner.md` |
 | Decisions | `~/soron-clone/memory/decisions/` |
 | Tool inventory and approval levels | `~/soron-clone/memory/knowledge/tools.md` (read before using any write-capable tool) |
+| Session protocol (working procedure) | `~/soron-clone/runtime/PROTOCOL.md` (read at session start and before any approval-requiring step) |
+| Approval log | `~/soron-clone/tasks/approvals.md` |
+| Guard hook and policy | `~/soron-clone/runtime/hooks/guard.sh`, `~/soron-clone/runtime/policy.json` (tests: `~/soron-clone/runtime/tests/`) |
 
 @memory/INDEX.md
 @memory/SCHEMA.md
 @tasks/tasks.md
+
+**Working procedure:** follow `runtime/PROTOCOL.md` (session start, retrieval, planning, approvals, blocked tasks, guard, git procedures, write-back). The rules stay here and in `memory/SCHEMA.md`; the protocol only describes how to apply them.
 
 ## Memory conventions
 
@@ -66,6 +71,7 @@ The Clone lives in this repository (`~/soron-clone`), not in any Claude account.
 ## Global configuration and connectors
 
 - `~/.claude/CLAUDE.md` contains only the import of this file. Keep it. Make no other global Claude configuration changes without Soron's approval.
+- `~/.claude/settings.json` holds a global `permissions.ask` rule `Bash(git push *)` and a `PreToolUse` hook that runs the Clone guard (`runtime/hooks/guard.sh`; decision [[2026-09-26-clone-guard-hook]]). The guard is a **backstop**: it returns only nothing, ask or deny, never allow. **A guard or Claude Code permission prompt is never Soron's approval**; ask him in the conversation first. Don't change or remove either without his approval. Rollback: remove the `hooks` entry or set `"disableAllHooks": true`.
 - Do not connect, authenticate, remove, disable, or modify any unknown connector (e.g. `higgsfield`). Leave it untouched and mention it to Soron if relevant.
 - Connecting any new external service (Figma sign-in, GitHub/`gh`, Gmail, Slack, other communication tools) requires Soron's explicit approval.
 

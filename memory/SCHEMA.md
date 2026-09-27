@@ -64,6 +64,7 @@ Project notes list **only active** decisions. Superseded ones stay in `decisions
 - Log: `tasks/approvals.md`, one line per approval request: `A-0001 | STATE | level | action | target | task | requested | decided | Soron's words | evidence`.
 - States: `requested` → `approved` / `denied` → `executed` (with evidence) · `expired` · `cancelled`.
 - Create an entry when a WRITE or DESTRUCTIVE action is about to be requested. Record Soron's decision **quoting his words** (briefly), then `executed` with evidence once it's done.
+- **Exception (timing only):** a push, and a commit's own approval entry, may be recorded after execution in the next substantive record update (push-record rule, `runtime/PROTOCOL.md` §4). The approval itself must still be given in the conversation before the action; only the log entry is deferred.
 - **The log is a record Claude writes, not proof or authority.** Approval happens in the conversation. **A Claude Code permission prompt, including one forced by the guard hook, is never an approval entry.**
 - One approval covers the actions and targets it names; it doesn't carry over to other actions, targets or sessions (CLAUDE.md "Approval model", rule 7). DESTRUCTIVE actions are approved immediately before execution.
 - Started 2026-09-26. Approvals before that aren't backfilled; see `memory/episodes/`.
