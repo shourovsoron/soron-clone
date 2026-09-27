@@ -38,7 +38,9 @@ ln -s ../../runtime/git-hooks/pre-commit ~/soron-clone/.git/hooks/pre-commit
 ```
 
 Do **not** use `git config core.hooksPath`: the guard denies it, because it is also how the scan
-could be switched off. Never bypass the scan with `--no-verify` without Soron's approval.
+could be switched off. Claude never uses `--no-verify` or `commit -n` either: the guard always
+denies them. If the scan blocks a commit, change the content; only Soron can skip the scan, by
+running that commit himself or through an approved change to the guard policy.
 
 ## 5. Load the Clone in every session: `~/.claude/CLAUDE.md`
 

@@ -24,7 +24,8 @@ One line per note. Rules: [SCHEMA.md](SCHEMA.md). Notes marked *(inferred)* are 
 _(none: every client relationship is unconfirmed)_
 
 ## Decisions
-- [2026-09-27-clone-architecture-versioned-precommit](decisions/2026-09-27-clone-architecture-versioned-precommit.md) — **active**. Git repo `~/soron-clone`, authoritative memory, schema; private GitHub backup (`shourovsoron/soron-clone`), commit and push only with approval; pre-commit scan version-controlled at `runtime/git-hooks/pre-commit`, symlinked from `.git/hooks`; setup in `runtime/SETUP.md`.
+- [2026-09-27-clone-architecture-precommit-no-bypass](decisions/2026-09-27-clone-architecture-precommit-no-bypass.md) — **active**. Git repo `~/soron-clone`, authoritative memory, schema; private GitHub backup (`shourovsoron/soron-clone`), commit and push only with approval; version-controlled pre-commit scan (symlinked from `.git/hooks`; setup in `runtime/SETUP.md`); Claude never bypasses it, only Soron can.
+- [2026-09-27-clone-architecture-versioned-precommit](decisions/2026-09-27-clone-architecture-versioned-precommit.md) — **superseded** by the above (was: `--no-verify` "without Soron's approval", which the guard never allowed).
 - [2026-09-26-clone-architecture-github-backup](decisions/2026-09-26-clone-architecture-github-backup.md) — **superseded** by the above (was: pre-commit hook not version-controlled).
 - [2026-09-26-clone-memory-architecture](decisions/2026-09-26-clone-memory-architecture.md) — **superseded** by 2026-09-26-clone-architecture-github-backup (was: local-only git).
 - [2026-09-26-clone-guard-hook](decisions/2026-09-26-clone-guard-hook.md) — **active**. Global PreToolUse guard (`runtime/hooks/guard.sh`; none, ask or deny, never allow) plus global `Bash(git push *)` ask rule; verified live.

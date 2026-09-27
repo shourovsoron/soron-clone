@@ -5,9 +5,9 @@ description: Clone git repo ~/soron-clone with private GitHub backup (unchanged)
 updated: 2026-09-27
 confirmed: soron
 sources: [Soron's approvals 2026-09-27 (Phase 4.7, A-0032 to A-0035)]
-status: active
+status: superseded
 supersedes: 2026-09-26-clone-architecture-github-backup
-superseded_by: null
+superseded_by: 2026-09-27-clone-architecture-precommit-no-bypass
 decided_by: Soron
 ---
 

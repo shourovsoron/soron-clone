@@ -5,7 +5,8 @@
 # runtime/git-hooks/pre-commit; .git/hooks/pre-commit is a symlink to it
 # (re-create the link after a fresh clone, see runtime/SETUP.md).
 # Uses only /bin/sh, git and /usr/bin/grep; nothing to install.
-# Bypassing it (git commit --no-verify) requires Soron's explicit approval.
+# Claude never bypasses it (--no-verify or commit -n): the guard always denies
+# that. Only Soron can skip it, by running the commit himself.
 
 GREP=/usr/bin/grep
 fail=0
@@ -33,7 +34,7 @@ if [ -n "$hits" ]; then
 fi
 
 if [ "$fail" -ne 0 ]; then
-  echo "pre-commit: remove the secret(s) and re-stage. Do not bypass without Soron's approval." >&2
+  echo "pre-commit: remove the secret(s) and re-stage. Claude must not bypass this scan; only Soron can, by committing himself." >&2
   exit 1
 fi
 exit 0

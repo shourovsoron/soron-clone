@@ -64,10 +64,10 @@ The Clone lives in this repository (`~/soron-clone`), not in any Claude account.
 
 ## Git safety and backup
 
-- `~/soron-clone` has a **private GitHub remote**: `origin` = `https://github.com/shourovsoron/soron-clone.git` (Soron's own account). First pushed 2026-09-26 (`23eb9fa`). Decision: [[2026-09-27-clone-architecture-versioned-precommit]].
+- `~/soron-clone` has a **private GitHub remote**: `origin` = `https://github.com/shourovsoron/soron-clone.git` (Soron's own account). First pushed 2026-09-26 (`23eb9fa`). Decision: [[2026-09-27-clone-architecture-precommit-no-bypass]].
 - **GitHub holds only what has been committed and pushed.** Uncommitted or unpushed changes exist only on this Mac.
 - Commits use the **repo-local** identity (Shourov Hossain Soron with the GitHub noreply address). Never change the global git config.
-- A pre-commit secret scan runs on every commit. It is version-controlled at `runtime/git-hooks/pre-commit`; `.git/hooks/pre-commit` is a symlink to it (re-create the link after a fresh clone, see `runtime/SETUP.md`; never via `core.hooksPath`). Never bypass it with `--no-verify` without Soron's approval.
+- A pre-commit secret scan runs on every commit. It is version-controlled at `runtime/git-hooks/pre-commit`; `.git/hooks/pre-commit` is a symlink to it (re-create the link after a fresh clone, see `runtime/SETUP.md`; never via `core.hooksPath`). Claude never uses `--no-verify` or `commit -n`: the guard always denies them. If the scan blocks a commit, change the content; only Soron can skip the scan, by running that commit himself or through an approved change to the guard policy.
 - **Every commit needs Soron's approval; every push is DESTRUCTIVE**, approved immediately before. No force-push or history rewrite. Changing the remote, repository visibility or GitHub settings needs approval. The same git rules apply to every repository (see "Approval model", rule 2).
 
 ## Global configuration and connectors
