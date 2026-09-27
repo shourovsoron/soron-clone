@@ -3,11 +3,13 @@
 Rules: `memory/SCHEMA.md` → Tasks. COMPLETED requires evidence.
 States: NEW · PLANNING · IN_PROGRESS · WAITING_FOR_SORON · BLOCKED · VERIFYING · COMPLETED · CANCELLED
 
-`ID | STATE | project | title | next step | updated`
+`ID | STATE | project | title | next step | updated | blocked_on | needs`
+
+`blocked_on` (what is missing) and `needs` (an approval ID from `tasks/approvals.md`, or one specific question) are required for WAITING_FOR_SORON and BLOCKED tasks and left out otherwise. Approvals: `tasks/approvals.md`.
 
 ## Open
-- T-0010 | IN_PROGRESS | clone | Phase 4: Clone runtime | done: architecture approved, docs research, global `Bash(git push *)` ask rule, 4.2 guard + 70 offline tests, 4.3 registration + live verification (deny blocked; ask prompted and Soron approved). Not done: 4.1 PROTOCOL.md, 4.4 approvals log + blocked fields, 4.5–4.6 SessionStart context hook, 4.7 SETUP.md + versioned pre-commit hook, committing `runtime/`. Next: waits for Soron | 2026-09-26
-- T-0003 | WAITING_FOR_SORON | clone | Clean up original built-in memory files (`~/.claude/projects/-Users-soron-Desktop-claude-project/memory/`) | keep until Soron approves | 2026-09-26
+- T-0010 | IN_PROGRESS | clone | Phase 4: Clone runtime | done: architecture approved, docs research, global `Bash(git push *)` ask rule, 4.2 guard + 70 offline tests, 4.3 registration + live verification (deny blocked; ask prompted and Soron approved), Step 0 commit 07ed5d0 pushed (A-0001, A-0002). Done too: 4.4 approvals log + blocked fields + SCHEMA.md (A-0003, A-0004; uncommitted). Not done: 4.1 PROTOCOL.md, 4.5–4.6 SessionStart context hook, 4.7 SETUP.md + versioned pre-commit hook, final commit. Order approved: 0 → 4.4 → 4.1 → 4.5 → 4.6 → 4.7 → final | 2026-09-27
+- T-0003 | WAITING_FOR_SORON | clone | Clean up original built-in memory files (`~/.claude/projects/-Users-soron-Desktop-claude-project/memory/`) | keep until Soron approves | 2026-09-26 | blocked_on: Soron's decision whether to delete the three originals (now ported into the Clone) | needs: "Delete the three original built-in memory files and their MEMORY.md, yes or no?"
 - T-0005 | IN_PROGRESS | clone | Phase 3 (tool layer) | only the tool-inventory step is approved; next item needs Soron's go-ahead | 2026-09-26
 
 ## Standing constraints (from Soron)

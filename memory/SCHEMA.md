@@ -52,11 +52,21 @@ Project notes list **only active** decisions. Superseded ones stay in `decisions
 
 ## Tasks
 
-- Board: `tasks/tasks.md`, one line per task: `T-0001 | STATE | project | title | next step | updated`.
+- Board: `tasks/tasks.md`, one line per task: `T-0001 | STATE | project | title | next step | updated | blocked_on | needs`.
+- **WAITING_FOR_SORON and BLOCKED tasks must carry `blocked_on`** (what exactly is missing) **and `needs`** (an approval ID from `tasks/approvals.md`, such as `A-0003`, or one specific question for Soron). Other states leave both out.
 - Detail file `tasks/T-0001-<slug>.md` only for tasks spanning sessions.
 - States: NEW → PLANNING → IN_PROGRESS → WAITING_FOR_SORON → BLOCKED → VERIFYING → COMPLETED → CANCELLED.
 - **COMPLETED requires an `evidence:` entry** (verification output, URL checked, test result, or Soron's confirmation). Written code alone is not evidence. No evidence means the task stays VERIFYING.
 - CANCELLED requires a one-line reason.
+
+## Approvals
+
+- Log: `tasks/approvals.md`, one line per approval request: `A-0001 | STATE | level | action | target | task | requested | decided | Soron's words | evidence`.
+- States: `requested` → `approved` / `denied` → `executed` (with evidence) · `expired` · `cancelled`.
+- Create an entry when a WRITE or DESTRUCTIVE action is about to be requested. Record Soron's decision **quoting his words** (briefly), then `executed` with evidence once it's done.
+- **The log is a record Claude writes, not proof or authority.** Approval happens in the conversation. **A Claude Code permission prompt, including one forced by the guard hook, is never an approval entry.**
+- One approval covers the actions and targets it names; it doesn't carry over to other actions, targets or sessions (CLAUDE.md "Approval model", rule 7). DESTRUCTIVE actions are approved immediately before execution.
+- Started 2026-09-26. Approvals before that aren't backfilled; see `memory/episodes/`.
 
 ## Never
 
