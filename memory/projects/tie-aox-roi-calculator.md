@@ -2,8 +2,9 @@
 name: tie-aox-roi-calculator
 type: project
 description: The Implant Engine AOX ROI calculator — React 19 + Vite; logic only in lib/roi.ts with deliberate guards; hand-rolled SVG donut; PDF export; embeddable in an iframe.
-updated: 2026-09-26
+updated: 2026-09-27
 last_verified: 2026-09-26
+paths: [~/Desktop/claude-project/the-implant-engine-aox-roi-calculator-main]
 confirmed: inferred
 sources:
   - ~/Desktop/claude-project/the-implant-engine-aox-roi-calculator-main (files + git log)

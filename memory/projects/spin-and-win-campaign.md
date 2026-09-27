@@ -2,8 +2,9 @@
 name: spin-and-win-campaign
 type: project
 description: Spin & Win lead-generation prize wheel — Next.js 14 + MongoDB Atlas, server-authoritative prize engine (800 prizes), admin dashboard with CSV export. Ownership unknown.
-updated: 2026-09-26
+updated: 2026-09-27
 last_verified: 2026-09-26
+paths: [~/Desktop/claude-project/spin-and-win-campaign]
 confirmed: inferred
 sources:
   - ~/Desktop/claude-project/spin-and-win-campaign/README.md

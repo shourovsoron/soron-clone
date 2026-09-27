@@ -2,8 +2,9 @@
 name: prize-spinner
 type: project
 description: Prize Spinner — client-only Next.js raffle draw: import participant CSV, configure prizes, spin for one random winner at a time; state in localStorage. Ownership unknown.
-updated: 2026-09-26
+updated: 2026-09-27
 last_verified: 2026-09-26
+paths: [~/Desktop/claude-project/prize-spinner]
 confirmed: inferred
 sources:
   - ~/Desktop/claude-project/prize-spinner/README.md

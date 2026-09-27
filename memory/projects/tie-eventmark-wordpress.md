@@ -2,8 +2,9 @@
 name: tie-eventmark-wordpress
 type: project
 description: The Implant Engine site on claude.eventmark.design — WordPress + Elementor Free, pages generated via PHP through Novamira. Environment and client status unknown.
-updated: 2026-09-26
+updated: 2026-09-27
 last_verified: 2026-09-26
+paths: []
 confirmed: inferred
 sources:
   - ported built-in memory note (last modified 2026-09-16), original kept at ~/.claude/projects/-Users-soron-Desktop-claude-project/memory/tie-eventmark-wordpress.md

@@ -13,6 +13,7 @@ confirmed: soron | inferred   # soron = Soron explicitly confirmed; inferred = r
 sources: [paths or URLs]
 ```
 Project notes also carry `last_verified: YYYY-MM-DD`, the date the Current state section was last checked against its sources.
+Project notes also carry `paths: [...]`: the project's local folders as an inline list (absolute or `~/…`; `[]` when there is none, e.g. a website). `runtime/hooks/context.sh` uses it only to match the session folder to the note; it grants no permission.
 
 ## Three kinds of information (never merge them)
 

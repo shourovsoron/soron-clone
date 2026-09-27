@@ -2,8 +2,9 @@
 name: visionic-agency
 type: project
 description: Visionic Agency website — Next.js 16 front end with WordPress as a headless CMS (planned); home-page sections in progress with significant uncommitted work.
-updated: 2026-09-26
+updated: 2026-09-27
 last_verified: 2026-09-26
+paths: [~/Projects/visionic-agency]
 confirmed: inferred
 sources:
   - ~/Projects/visionic-agency/CLAUDE.md

@@ -2,8 +2,9 @@
 name: smarthire50-site
 type: project
 description: smarthire50.com — WordPress job board (WorkScout + WP Job Manager); 200 LinkedIn jobs imported on 2026-09-22. Ownership unknown.
-updated: 2026-09-26
+updated: 2026-09-27
 last_verified: 2026-09-26
+paths: []
 confirmed: inferred
 sources:
   - ~/Desktop/claude-project/smarthire50-linkedin-import-report.md (dated 2026-09-22)

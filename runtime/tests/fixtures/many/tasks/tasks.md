@@ -1,0 +1,33 @@
+# Task board (fixture: many open tasks for context.sh cap tests)
+
+## Open
+- T-0201 | IN_PROGRESS | alpha | Many-task fixture item 01 | next | 2026-09-20
+- T-0202 | IN_PROGRESS | alpha | Many-task fixture item 02 | next | 2026-09-20
+- T-0203 | IN_PROGRESS | alpha | Many-task fixture item 03 | next | 2026-09-20
+- T-0204 | IN_PROGRESS | alpha | Many-task fixture item 04 | next | 2026-09-20
+- T-0205 | IN_PROGRESS | alpha | Many-task fixture item 05 | next | 2026-09-20
+- T-0206 | IN_PROGRESS | alpha | Many-task fixture item 06 | next | 2026-09-20
+- T-0207 | IN_PROGRESS | alpha | Many-task fixture item 07 | next | 2026-09-20
+- T-0208 | IN_PROGRESS | alpha | Many-task fixture item 08 | next | 2026-09-20
+- T-0209 | IN_PROGRESS | alpha | Many-task fixture item 09 | next | 2026-09-20
+- T-0210 | IN_PROGRESS | alpha | Many-task fixture item 10 | next | 2026-09-20
+- T-0211 | IN_PROGRESS | alpha | Many-task fixture item 11 | next | 2026-09-20
+- T-0212 | IN_PROGRESS | alpha | Many-task fixture item 12 | next | 2026-09-20
+- T-0213 | IN_PROGRESS | alpha | Many-task fixture item 13 | next | 2026-09-20
+- T-0214 | IN_PROGRESS | alpha | Many-task fixture item 14 | next | 2026-09-20
+- T-0215 | IN_PROGRESS | alpha | Many-task fixture item 15 | next | 2026-09-20
+- T-0216 | IN_PROGRESS | alpha | Many-task fixture item 16 | next | 2026-09-20
+- T-0217 | IN_PROGRESS | alpha | Many-task fixture item 17 | next | 2026-09-20
+- T-0218 | IN_PROGRESS | alpha | Many-task fixture item 18 | next | 2026-09-20
+- T-0219 | IN_PROGRESS | alpha | Many-task fixture item 19 | next | 2026-09-20
+- T-0220 | IN_PROGRESS | alpha | Many-task fixture item 20 | next | 2026-09-20
+- T-0221 | IN_PROGRESS | alpha | Many-task fixture item 21 | next | 2026-09-20
+- T-0222 | IN_PROGRESS | alpha | Many-task fixture item 22 | next | 2026-09-20
+- T-0223 | IN_PROGRESS | alpha | Many-task fixture item 23 | next | 2026-09-20
+- T-0224 | IN_PROGRESS | alpha | Many-task fixture item 24 | next | 2026-09-20
+- T-0225 | IN_PROGRESS | alpha | Many-task fixture item 25 | next | 2026-09-20
+- T-0226 | IN_PROGRESS | alpha | Many-task fixture item 26 | next | 2026-09-20
+- T-0227 | IN_PROGRESS | alpha | Many-task fixture item 27 | next | 2026-09-20
+- T-0228 | IN_PROGRESS | alpha | Many-task fixture item 28 | next | 2026-09-20
+- T-0229 | IN_PROGRESS | alpha | Many-task fixture item 29 | next | 2026-09-20
+- T-0230 | IN_PROGRESS | alpha | Many-task fixture item 30 | next | 2026-09-20
