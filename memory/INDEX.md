@@ -7,6 +7,7 @@ One line per note. Rules: [SCHEMA.md](SCHEMA.md). Notes marked *(inferred)* are 
 
 ## Preferences
 - [figma-is-design-only](preferences/figma-is-design-only.md) — **confirmed**. Figma is primarily a visual reference; don't blindly copy numbers, dimensions or spacing; use judgment and project constraints (project rules win).
+- [communication-style-profile](preferences/communication-style-profile.md) — **confirmed**. Writing-style reference for drafting messages in Soron's voice (short Banglish, one-word acknowledgements, little emoji); style only, never a source of facts, opinions or decisions; never sent without Soron's approval.
 
 ## Projects
 - [visionic-agency](projects/visionic-agency.md) *(inferred)* — Next.js 16 plus planned headless WordPress; home sections in progress; **baseline 5 modified + 46 untracked (confirmed): don't touch**; WordPress not connected; deployment unknown.
